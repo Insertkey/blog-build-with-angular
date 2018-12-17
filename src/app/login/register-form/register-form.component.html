@@ -1,0 +1,60 @@
+<form nz-form [formGroup]="RegisterForm" class="login-form" (ngSubmit)="submitForm()">
+  <nz-form-item *ngIf="isRegisterByPhone">
+    <nz-form-control>
+      <nz-input-group [nzPrefix]="prefixPhone">
+        <input type="text" nz-input formControlName="phone" placeholder="请输入手机号">
+      </nz-input-group>
+      <nz-form-explain *ngIf="RegisterForm.get('phone').dirty && RegisterForm.get('phone').errors">
+        <ng-container *ngIf="RegisterForm.get('phone').hasError('required')">
+          请输入手机号
+        </ng-container>
+        <ng-container *ngIf="RegisterForm.get('phone').hasError('pattern')">
+          请输入正确的手机号
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item *ngIf="!isRegisterByPhone">
+    <nz-form-control>
+      <nz-input-group [nzPrefix]="prefixMail">
+        <input type="text" nz-input formControlName="mail" placeholder="请输入邮箱">
+      </nz-input-group>
+      <nz-form-explain *ngIf="RegisterForm.get('mail').dirty && RegisterForm.get('mail').errors">
+        <ng-container *ngIf="RegisterForm.get('mail').hasError('required')">
+          请输入邮箱
+        </ng-container>
+        <ng-container *ngIf="RegisterForm.get('mail').hasError('email')">
+          请输入正确格式的邮箱
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-input-group [nzPrefix]="prefixLock">
+        <input nz-input formControlName="verificationCode" placeholder="验证码" style="width: 50%">
+        <button nz-button [nzType]="'primary'" style="display: inline-block;float: right" (click)="getVerificationCode(isRegisterByPhone)"
+                [disabled]="!((RegisterForm.get('phone').valid)||(RegisterForm.get('mail').valid))||isWaiting">{{buttonMsg}}
+        </button>
+      </nz-input-group>
+      <nz-form-explain
+        *ngIf="RegisterForm.get('verificationCode').dirty && RegisterForm.get('verificationCode').errors">
+        <ng-container *ngIf="RegisterForm.get('verificationCode').hasError('required')">
+          请输入验证码
+        </ng-container>
+        <ng-container *ngIf="RegisterForm.get('verificationCode').hasError('pattern')">
+          验证码为6位数
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <span class="login-form-forgot" style="cursor: pointer;color: #40a9ff" (click)="toggleRegisterMethod()">{{isRegisterByPhone?'邮箱注册':'手机注册'}}</span>
+      <button nz-button class="login-form-button" [nzType]="'primary'">注 册</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<ng-template #prefixPhone><i nz-icon type="mobile"></i></ng-template>
+<ng-template #prefixMail><i nz-icon type="mail"></i></ng-template>
+<ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>

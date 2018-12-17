@@ -1,0 +1,16 @@
+<div style="background: #ECECEC;padding:25px;">
+  <nz-card style="min-height: 820px" [nzBordered]="false" [nzTitle]="titleTemplet">
+    个人信息
+  </nz-card>
+</div>
+<ng-template #titleTemplet>
+  <nz-breadcrumb>
+    <nz-breadcrumb-item>
+      <a routerLink="../userInfo">个人中心</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      个人信息
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+</ng-template>
+

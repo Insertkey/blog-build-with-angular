@@ -1,0 +1,54 @@
+<form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-control nzHasFeedback>
+      <nz-input-group [nzPrefix]="prefixUser">
+        <input type="text" nz-input formControlName="userName" placeholder="用户名">
+      </nz-input-group>
+      <nz-form-explain *ngIf="loginForm.get('userName').dirty && loginForm.get('userName').errors">
+        <ng-container *ngIf="loginForm.get('userName').hasError('required')">
+          请输入用户名
+        </ng-container>
+        <ng-container *ngIf="loginForm.get('userName').hasError('shorterThanExpected')">
+          用户名长度不能小于6个字符
+        </ng-container>
+        <ng-container *ngIf="loginForm.get('userName').hasError('longerThanExpected')">
+          用户名长度不能大于12个字符
+        </ng-container>
+        <ng-container *ngIf="loginForm.get('userName').hasError('notStartWithUppercase')">
+          用户名必须以大写字母开头
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzHasFeedback>
+      <nz-input-group [nzPrefix]="prefixLock">
+        <input type="password" nz-input formControlName="password" placeholder="密码">
+      </nz-input-group>
+      <nz-form-explain *ngIf="loginForm.get('password').dirty && loginForm.get('password').errors">
+        <ng-container *ngIf="loginForm.get('password').hasError('required')">
+          请输入密码
+        </ng-container>
+        <ng-container *ngIf="loginForm.get('password').hasError('shorterThanExpected')">
+          密码长度不能小于8个字符
+        </ng-container>
+        <ng-container *ngIf="loginForm.get('password').hasError('longerThanExpected')">
+          密码长度不能大于16个字符
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <label nz-checkbox formControlName="remember">
+        <span>记住账号</span>
+      </label>
+      <a class="login-form-forgot" routerLink="/forget-password">忘记密码</a>
+      <button nz-button class="login-form-button" [nzType]="'primary'" [disabled]="!loginForm.valid||isLogging">
+        {{isLogging?'登录中···':'登 录'}}
+      </button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+<ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>

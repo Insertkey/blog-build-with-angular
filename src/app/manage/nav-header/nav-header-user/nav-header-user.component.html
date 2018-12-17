@@ -1,0 +1,20 @@
+<div>
+  <nz-dropdown nzPlacement="bottomLeft">
+    <div class="alain-default__nav-item d-flex align-items-center px-sm" nz-dropdown>
+      <nz-avatar [nzSrc]="settings.user.avatar" nzSize="large" class="mr-md"></nz-avatar>
+      {{settings.user.name}}
+    </div>
+    <div nz-menu class="width-sm">
+      <div nz-menu-item routerLink="userInfo"><i nz-icon type="user" class="mr-md"></i>
+        个人中心
+      </div>
+      <div nz-menu-item routerLink="changePassword"><i nz-icon type="setting" class="mr-md"></i>
+        修改密码
+      </div>
+      <li nz-menu-divider></li>
+      <div nz-menu-item><i nz-icon type="logout" class="mr-sm"></i>
+        退出登录
+      </div>
+    </div>
+  </nz-dropdown>
+</div>

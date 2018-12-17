@@ -1,0 +1,17 @@
+<div style="background-image:url(assets/login_page_bg.png);background-color:#b8e5f8;width: 100%;height: 100%;">
+  <div style="height:80%;display: flex;justify-content: center;align-items: center;">
+    <div style="padding-top:50px;background-color: #ffffff;border-radius: 2px;width: 340px;">
+      <div style="padding:0 60px 10px 60px">
+        <h1 style="width:100%;text-align:center;font-size: 32px;margin-bottom: 30px">{{isLogin?'后台管理系统':'注 册'}}</h1>
+      <app-login-form *ngIf="isLogin"></app-login-form>
+      <app-register-form *ngIf="!isLogin"></app-register-form>
+      </div>
+      <div style="width:100%;background-color:#F6F6F6;font-size: 18px;text-align: center;line-height: 65px;height: 65px">
+        <span>
+          <span>{{isLogin?'没有账号？':'已有账号？'}} </span>
+          <span (click)="toggleStatus()" style="color:blueviolet;cursor:pointer">{{isLogin?'注册':'登录'}}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<nz-layout style="min-height: 100%">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzWidth]="width" [nzReverseArrow]="isReverseArrow">
+    <div class="logo">
+    </div>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+      <li nz-menu-item routerLink="overview">
+        <span><i nz-icon type="home"></i><span class="nav-text">概览</span></span>
+      </li>
+      <li nz-submenu>
+        <span title><i nz-icon type="file"></i><span class="nav-text">写博客</span></span>
+        <ul>
+          <li nz-menu-item routerLink="writeBlog">上传博客</li>
+          <li nz-menu-item routerLink="setBlog">博客设置</li>
+        </ul>
+      </li>
+      <li nz-submenu>
+        <span title><i nz-icon type="user"></i><span class="nav-text">个人中心</span></span>
+        <ul>
+          <li nz-menu-item routerLink="userInfo">个人信息</li>
+          <li nz-menu-item routerLink="changePassword">修改密码</li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header style="background: #fff; padding:0;">
+      <app-nav-header></app-nav-header>
+    </nz-header>
+    <nz-content>
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
