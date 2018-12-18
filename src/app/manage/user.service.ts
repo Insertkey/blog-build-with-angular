@@ -8,6 +8,7 @@ import {NzMessageService} from 'ng-zorro-antd';
 })
 export class UserService {
   changePasswordUrl = ROOT_URL + 'api/user/change';
+  isUserExistUrl = ROOT_URL + 'api/user/exist';
 
   constructor(private http: HttpClient, private msg: NzMessageService) {
   }
@@ -22,5 +23,9 @@ export class UserService {
     } else {
       this.msg.create('error', res.errMsg);
     }
+  }
+
+  handelUserExist(data) {
+    return this.http.post<Response>(this.isUserExistUrl, data);
   }
 }

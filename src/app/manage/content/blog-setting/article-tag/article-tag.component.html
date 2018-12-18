@@ -1,0 +1,59 @@
+<button nz-button [nzType]="'primary'" (click)="isVisible=true" style="margin-bottom: 15px">新增标签</button>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="添加标签" (nzOnCancel)="isVisible=false"
+          (nzOnOk)="handleSure(addTagForm.valid,addTagForm.value)" [nzOkLoading]="isOkLoading">
+  <form nz-form [formGroup]="addTagForm">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>标签名称</nz-form-label>
+      <nz-form-control [nzSpan]="12">
+        <input nz-input formControlName="tagName" placeholder="请输入标签名称">
+        <nz-form-explain *ngIf="addTagForm.get('tagName').dirty&&addTagForm.get('tagName').errors">
+          <ng-container *ngIf="addTagForm.get('tagName').hasError('required')">
+            请输入标签名称
+          </ng-container>
+          <ng-container *ngIf="addTagForm.get('tagName').hasError('maxlength')">
+            标签名称最大字符长度为8
+          </ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>标签颜色</nz-form-label>
+      <nz-form-control [nzSpan]="12">
+        <input nz-input formControlName="color" placeholder="请选择颜色">
+        <nz-form-explain *ngIf="addTagForm.get('color').dirty&&addTagForm.get('color').errors">
+          <ng-container *ngIf="addTagForm.get('color').hasError('required')">
+            请输入标签颜色
+          </ng-container>
+          <ng-container *ngIf="addTagForm.get('color').hasError('pattern')">
+            请输入十六进制颜色
+          </ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>
+<nz-table #basicTable [nzData]="tagList" [nzBordered]="true">
+  <thead>
+  <tr>
+    <th [nzWidth]="'100px'"></th>
+    <th>标签名字</th>
+    <th>标签颜色</th>
+    <th [nzWidth]="'200px'">操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tag of tagList;let i=index">
+    <td>{{i+1}}</td>
+    <td>{{tag.tagName}}</td>
+    <td>{{tag.color}}<div [style.background-color]="tag.color" style="width: 50px;height: 30px;border-radius: 2px;display: inline-block;margin-left: 50px"></div></td>
+    <td (click)="handleTableClick($event.target.getAttribute('data-id'),$event.target.getAttribute('data-method'))">
+      <button nz-button [nzType]="'primary'" [nzSize]="'small'" [attr.data-id]="tag.id" [attr.data-method]="'edit'">修改
+      </button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-button [nzType]="'danger'" [nzSize]="'small'" [attr.data-id]="tag.id" [attr.data-method]="'delete'">
+        删除
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

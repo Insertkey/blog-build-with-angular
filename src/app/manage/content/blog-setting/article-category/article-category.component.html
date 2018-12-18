@@ -1,0 +1,27 @@
+<div style="width: 250px">
+  <button nz-button [nzType]="'primary'" (click)="isVisible=true" [nzBlock]="true">添加文章分类 +</button>
+  <nz-modal [nzVisible]="isVisible" [nzTitle]="'添加文章标签'" (nzOnCancel)="isVisible=false"
+            (nzOnOk)="handelOK(addCategoryForm.valid,addCategoryForm.value)" [nzOkLoading]="isOkLoading">
+    <form nz-form [formGroup]="addCategoryForm">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>分类名称</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <input nz-input formControlName="categoryName" placeholder="请输入文章分类名称"
+                 (keyup.enter)="handelOK(addCategoryForm.valid,addCategoryForm.value)">
+          <nz-form-explain
+            *ngIf="addCategoryForm.get('categoryName').dirty&&addCategoryForm.get('categoryName').errors">
+            <ng-container *ngIf="addCategoryForm.get('categoryName').hasError('required')">
+              请输入文章分类名称
+            </ng-container>
+          </nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-modal>
+  <ul (click)="handleDeleteCategory($event.target.parentNode.getAttribute('data-id'))">
+    <li class="category-list" *ngIf="!categoryList">暂无文章分类</li>
+    <li class="category-list" *ngFor="let category of categoryList">{{category.categoryName}}
+      <i nz-icon type="delete" theme="outline" class="delete-icon" title="删除" [attr.data-id]="category.id"></i>
+    </li>
+  </ul>
+</div>
