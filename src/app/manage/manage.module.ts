@@ -11,15 +11,28 @@ import {UserInfoComponent} from './content/user-info/user-info.component';
 import {UserChangePasswordComponent} from './content/user-change-password/user-change-password.component';
 import {BlogSettingComponent} from './content/blog-setting/blog-setting.component';
 import {BlogWritingComponent} from './content/blog-writing/blog-writing.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import { ArticleTagComponent } from './content/blog-setting/article-tag/article-tag.component';
-import { EditArticleComponent } from './content/blog-setting/edit-article/edit-article.component';
-import { ArticleCategoryComponent } from './content/blog-setting/article-category/article-category.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ArticleTagComponent} from './content/blog-setting/article-tag/article-tag.component';
+import {EditArticleComponent} from './content/blog-setting/edit-article/edit-article.component';
+import {ArticleCategoryComponent} from './content/blog-setting/article-category/article-category.component';
 
 @NgModule({
-  declarations: [LayoutComponent, NavHeaderComponent, NavHeaderUserComponent, OverviewComponent, UserInfoComponent, UserChangePasswordComponent, BlogSettingComponent, BlogWritingComponent, ArticleTagComponent, EditArticleComponent, ArticleCategoryComponent],
+  declarations: [
+    LayoutComponent,
+    NavHeaderComponent,
+    NavHeaderUserComponent,
+    OverviewComponent,
+    UserInfoComponent,
+    UserChangePasswordComponent,
+    BlogSettingComponent,
+    BlogWritingComponent,
+    ArticleTagComponent,
+    EditArticleComponent,
+    ArticleCategoryComponent
+  ],
   imports: [
     CommonModule,
+    FormsModule,
     NgZorroAntdModule,
     ReactiveFormsModule,
     ManageRoutingModule

@@ -1,6 +1,41 @@
 <div style="background: #ECECEC;padding:25px;">
   <nz-card style="min-height: 820px" [nzBordered]="false" [nzTitle]="titleTemplet">
-    上传博客
+    <div style="width: 400px">
+      <form nz-form>
+        <nz-form-item>
+          <nz-form-label nzRequired [nzSpan]="7">文章分类</nz-form-label>
+          <nz-form-control [nzSpan]="12" [nzValidateStatus]="formStatus">
+            <nz-select name="category" [(ngModel)]="selectCategory" (nzOpenChange)="showError=false;formStatus=''">
+              <nz-option *ngFor="let category of categoryList" [nzValue]="category.categoryName"
+                         [nzLabel]="category.categoryName"></nz-option>
+            </nz-select>
+            <nz-form-explain *ngIf="showError">
+              请选择文章分类
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label nzRequired [nzSpan]="7">选择文件</nz-form-label>
+          <nz-upload
+            [nzLimit]="1"
+            [(nzFileList)]="fileList"
+            [nzBeforeUpload]="beforeUpload">
+            <button nz-button>
+              <i nz-icon type="upload"></i><span>Select File</span>
+            </button>
+          </nz-upload>
+
+        </nz-form-item>
+      </form>
+      <div nz-row>
+        <div nz-col [nzPush]="7" [nzSpan]="12">
+          <button nz-button [nzType]="'primary'" [nzLoading]="uploading" (click)="handleUpload()"
+                  [disabled]="fileList.length == 0">
+            {{ uploading ? '正在上传' : '开始上传' }}
+          </button>
+        </div>
+      </div>
+    </div>
   </nz-card>
 </div>
 <ng-template #titleTemplet>
