@@ -16,6 +16,7 @@ export class BlogWritingComponent implements OnInit {
   showError = false;
   fileList: UploadFile[] = [];
   selectCategory: string;
+  shortIntroduction: string;
   categoryList: any[];
   formStatus: string;
 
@@ -43,6 +44,7 @@ export class BlogWritingComponent implements OnInit {
       this.fileList.forEach((file: any) => {
         formData.append('file', file);
         formData.append('category', this.selectCategory);
+        formData.append('shortIntroduction', this.shortIntroduction ? this.shortIntroduction : '');
       });
       this.uploading = true;
       const req = new HttpRequest('POST', this.uploadUrl, formData, {});
@@ -52,11 +54,15 @@ export class BlogWritingComponent implements OnInit {
         .subscribe(
           (res) => {
             this.uploading = false;
-            if (res.body.success === true) {
-              this.msg.success('上传成功');
-              this.fileList = [];
-            } else {
-              this.msg.error(res.body.errMsg);
+            try {
+              if (res.body.success === true) {
+                this.msg.success('上传成功');
+                this.fileList = [];
+              } else {
+                this.msg.error(res.body.errMsg);
+              }
+            } catch (e) {
+              console.error(e);
             }
           },
           err => {

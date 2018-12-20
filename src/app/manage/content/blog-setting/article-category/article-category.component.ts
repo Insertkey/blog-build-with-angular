@@ -20,7 +20,6 @@ export class ArticleCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.categoryList);
     this.getCategoryList();
     this.addCategoryForm = this.fb.group({
       categoryName: ['', [Validators.required]]

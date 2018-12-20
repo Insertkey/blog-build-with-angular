@@ -36,7 +36,8 @@ import {ArticleCategoryComponent} from './content/blog-setting/article-category/
     NgZorroAntdModule,
     ReactiveFormsModule,
     ManageRoutingModule
-  ]
+  ],
+  entryComponents: []
 })
 export class ManageModule {
 }

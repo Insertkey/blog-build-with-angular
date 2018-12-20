@@ -1,3 +1,29 @@
-<p>
-  edit-article works!
-</p>
+<nz-table [nzBordered]="true" [nzPageIndex]="currentPageIndex" [nzPageSize]="pageSize" [nzData]="articleList"
+          nzShowSizeChanger (nzPageIndexChange)="pageIndexChange()" (nzPageSizeChange)="PageSizeChange($event)" [nzShowQuickJumper]="true">
+  <thead>
+  <tr>
+    <th [nzWidth]="'80px'"></th>
+    <th [nzWidth]="'240px'">文章标题</th>
+    <th [nzWidth]="'180px'">文章分类</th>
+    <th>文章简介</th>
+    <th [nzWidth]="'180px'">创建时间</th>
+    <th [nzWidth]="'180px'">上次修改时间</th>
+    <th [nzWidth]="'180px'">操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let article of articleList;let i=index">
+    <td>{{i+1}}</td>
+    <td>{{article.articleName}}</td>
+    <td>{{article.category.categoryName}}</td>
+    <td>{{article.shortIntroduction?article.shortIntroduction:'暂无简介'}}</td>
+    <td>{{article.createTime|date}}</td>
+    <td>{{article.lastEditTime|date}}</td>
+    <td (click)="handleTableClick($event.target.getAttribute('data-id'),$event.target.getAttribute('data-method'))">
+      <button nz-button [nzType]="'primary'" [nzSize]="'small'" [attr.data-method]="'edit'" [attr.data-id]="article.id">修改</button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-button [nzType]="'danger'" [nzSize]="'small'" [attr.data-method]="'delete'" [attr.data-id]="article.id">删除</button>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

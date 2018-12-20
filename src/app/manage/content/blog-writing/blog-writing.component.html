@@ -1,6 +1,6 @@
 <div style="background: #ECECEC;padding:25px;">
   <nz-card style="min-height: 820px" [nzBordered]="false" [nzTitle]="titleTemplet">
-    <div style="width: 400px">
+    <div style="width: 500px">
       <form nz-form>
         <nz-form-item>
           <nz-form-label nzRequired [nzSpan]="7">文章分类</nz-form-label>
@@ -24,7 +24,12 @@
               <i nz-icon type="upload"></i><span>Select File</span>
             </button>
           </nz-upload>
-
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7">文章简介</nz-form-label>
+          <nz-form-control [nzSpan]="12">
+            <textarea nz-input [(ngModel)]="shortIntroduction" rows="4" placeholder="不超过144个字符" maxlength="144" [ngModelOptions]="{standalone: true}"></textarea>
+          </nz-form-control>
         </nz-form-item>
       </form>
       <div nz-row>
