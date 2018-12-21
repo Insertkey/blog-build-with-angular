@@ -11,7 +11,11 @@ import {NzMessageService, NzModalRef, NzModalService} from 'ng-zorro-antd';
 export class EditArticleComponent implements OnInit {
   articleList: ArticleList[];
   currentPageIndex: number;
+  total: number;
+  loading = true;
   pageSize: number;
+  sortKey = null;
+  sortValue = null;
   confirmModal: NzModalRef;
 
   constructor(private mangeService: ManageService, private modal: NzModalService, private msg: NzMessageService) {
@@ -20,23 +24,32 @@ export class EditArticleComponent implements OnInit {
   ngOnInit() {
     this.currentPageIndex = 1;
     this.pageSize = 10;
-    this.getArticleList(this.currentPageIndex, this.pageSize);
+    this.getArticleList();
   }
 
-  getArticleList(page, size) {
-    this.mangeService.getArticleList(page, size).subscribe((res: Response) => {
+  getArticleList() {
+    this.loading = true;
+    this.mangeService.getArticleList(this.currentPageIndex, this.pageSize, this.sortKey, this.sortValue).subscribe((res: Response) => {
       this.articleList = [...res.data];
+      this.total = res.option.total;
+      this.loading = false;
     });
   }
 
   pageIndexChange(e) {
     this.currentPageIndex = e;
-    this.getArticleList(this.currentPageIndex, this.pageSize);
+    this.getArticleList();
   }
 
   PageSizeChange(e) {
     this.pageSize = e;
-    this.getArticleList(this.currentPageIndex, this.pageSize);
+    this.getArticleList();
+  }
+
+  sort(sort: { key: string, value: string }): void {
+    this.sortKey = sort.key;
+    this.sortValue = sort.value;
+    this.getArticleList();
   }
 
   handleTableClick(id, method) {
@@ -53,7 +66,7 @@ export class EditArticleComponent implements OnInit {
       nzOnOk: () => this.mangeService.deleteArticle(id).subscribe((res: Response) => {
         if (res.success === true) {
           this.msg.success('删除成功');
-          this.getArticleList(this.currentPageIndex, this.pageSize);
+          this.getArticleList();
         } else {
           this.msg.error(res.errMsg);
         }

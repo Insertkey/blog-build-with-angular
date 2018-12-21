@@ -42,8 +42,15 @@ export class ManageService {
     return this.http.delete(this.deleteCategoryUrl + id);
   }
 
-  getArticleList(page, size) {
-    return this.http.get(this.getArticleListUrl, {params: {'page': page, 'size': size}});
+  getArticleList(page, size, sortKey?: string, sortValue?: string) {
+    return this.http.get(this.getArticleListUrl, {
+      params: {
+        'page': page,
+        'size': size,
+        'sortKey': sortKey,
+        'sortValue': sortValue
+      }
+    });
   }
 
   deleteArticle(id) {

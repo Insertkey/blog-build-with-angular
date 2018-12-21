@@ -4,7 +4,7 @@ import { NgZorroAntdModule} from 'ng-zorro-antd';
 
 import { VisiterRoutingModule } from './visiter-routing.module';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import {MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule} from '@angular/material';
 import { VisterPageComponent } from './vister-page/vister-page.component';
 import { HomeComponent } from './home/home.component';
 import {AboutComponent} from './about/about.component';
@@ -23,6 +23,7 @@ import {ShareModule} from '../share/share.module';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatCardModule,
     NgZorroAntdModule
   ]
 })

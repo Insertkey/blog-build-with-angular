@@ -55,12 +55,12 @@ export class BlogWritingComponent implements OnInit {
           (res) => {
             this.uploading = false;
             try {
-              if (res.body.success === true) {
-                this.msg.success('上传成功');
-                this.fileList = [];
-              } else {
-                this.msg.error(res.body.errMsg);
-              }
+              // if (res.body.success === true) {
+              //   this.msg.success('上传成功');
+              //   this.fileList = [];
+              // } else {
+              //   this.msg.error(res.body.errMsg);
+              // }
             } catch (e) {
               console.error(e);
             }
