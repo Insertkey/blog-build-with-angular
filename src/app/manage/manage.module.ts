@@ -15,6 +15,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ArticleTagComponent} from './content/blog-setting/article-tag/article-tag.component';
 import {EditArticleComponent} from './content/blog-setting/edit-article/edit-article.component';
 import {ArticleCategoryComponent} from './content/blog-setting/article-category/article-category.component';
+import {ShareModule} from '../share/share.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {ArticleCategoryComponent} from './content/blog-setting/article-category/
   imports: [
     CommonModule,
     FormsModule,
+    ShareModule,
     NgZorroAntdModule,
     ReactiveFormsModule,
     ManageRoutingModule

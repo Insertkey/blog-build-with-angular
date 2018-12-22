@@ -6,7 +6,7 @@ export interface Response {
   success: boolean;
   errMsg: string;
   data: null | any[];
-  option?: any[];
+  option?: { [key: string]: any };
 }
 
 // articleList接口,可能会多出用到

@@ -1,1 +1,12 @@
-<markdown [src]="articleUrl"></markdown>
+<div style="display: flex;justify-content: center;margin-top: 20px">
+  <mat-card class="article-detail-card">
+    <markdown [src]="articleUrl"></markdown>
+  </mat-card>
+  <nz-affix [nzOffsetTop]="80">
+    <mat-card class="article-catalog-card">
+      <nz-anchor [nzAffix]="false" [nzShowInkInFixed]="true">
+        <nz-link *ngFor="let anchor of anchorList" [nzHref]="'#'+anchor" [nzTitle]="anchor" class="anchor-item"></nz-link>
+      </nz-anchor>
+    </mat-card>
+  </nz-affix>
+</div>

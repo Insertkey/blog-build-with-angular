@@ -1,5 +1,4 @@
 .card-container{
-  height: 100%;
   padding: 10px 0;
   display: flex;
   justify-content: center;
@@ -9,10 +8,14 @@
 .introduction-card{
   width: 250px;
   height: 400px;
-  margin-right: 50px;
+  margin-right: 25px;
 }
 
 .article-list-card{
   width: 600px;
-  height: 800px;
+}
+
+.pagination-container{
+  text-align: center;
+  margin-top: 20px;
 }

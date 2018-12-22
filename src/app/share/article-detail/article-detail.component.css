@@ -1,0 +1,10 @@
+.article-detail-card {
+  width: 620px;
+  padding: 20px 40px;
+}
+
+.article-catalog-card {
+  width: 250px;
+  height: max-content;
+  margin-left: 25px;
+}

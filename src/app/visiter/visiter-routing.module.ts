@@ -4,6 +4,7 @@ import {VisterPageComponent} from './vister-page/vister-page.component';
 import {AboutComponent} from './about/about.component';
 import {HomeComponent} from './home/home.component';
 import {CategoryComponent} from './category/category.component';
+import {ArticleDetailComponent} from '../share/article-detail/article-detail.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       {path: 'about', component: AboutComponent},
       {path: 'category', component: CategoryComponent},
       {path: 'home', component: HomeComponent},
+      {path: 'article/:articleName', component: ArticleDetailComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'}
     ]
   }

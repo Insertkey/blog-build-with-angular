@@ -19,8 +19,8 @@
     <td>{{article.articleName}}</td>
     <td>{{article.category.categoryName}}</td>
     <td>{{article.shortIntroduction?article.shortIntroduction:'暂无简介'}}</td>
-    <td>{{article.createTime|date}}</td>
-    <td>{{article.lastEditTime|date}}</td>
+    <td>{{article.createTime|formatDate}}</td>
+    <td>{{article.lastEditTime|formatDate}}</td>
     <td (click)="handleTableClick($event.target.getAttribute('data-id'),$event.target.getAttribute('data-method'))">
       <button nz-button [nzType]="'primary'" [nzSize]="'small'" [attr.data-method]="'edit'" [attr.data-id]="article.id">
         修改
