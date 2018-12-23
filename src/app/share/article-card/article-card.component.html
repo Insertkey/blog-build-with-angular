@@ -6,6 +6,6 @@
   </p>
   <p style="min-height: 50px;text-indent: 2em">{{article.shortIntroduction?article.shortIntroduction:'暂无简介'}}</p>
   <div style="text-align: center">
-    <button mat-raised-button color="primary" [routerLink]="['/visiter/article',article.articleName]">阅读全文</button>
+    <button mat-raised-button color="primary" [routerLink]="['/visiter/article',article.id,{'articleName':article.articleName}]">阅读全文</button>
   </div>
 </div>

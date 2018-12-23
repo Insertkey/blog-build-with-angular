@@ -1,11 +1,9 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { slideInAnimation } from './animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [slideInAnimation]
 })
 export class AppComponent implements OnInit {
   constructor(private el: ElementRef) { }

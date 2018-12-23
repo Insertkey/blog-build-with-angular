@@ -1,10 +1,16 @@
 .article-detail-card {
   width: 620px;
   padding: 20px 40px;
+  height: max-content;
 }
 
 .article-catalog-card {
   width: 250px;
+  min-height: 200px;
   height: max-content;
   margin-left: 25px;
+}
+
+code{
+  background-color: #F2F2F2;
 }

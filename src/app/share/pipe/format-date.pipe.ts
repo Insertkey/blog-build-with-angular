@@ -13,7 +13,7 @@ export class FormatDatePipe implements PipeTransform {
     const DATE = new Date(date);
     const year = DATE.getFullYear();
     const month = DATE.getMonth() + 1;
-    const day = DATE.getDay();
+    const day = DATE.getDate();
     return `${year}-${month}-${day}`;
   }
 
