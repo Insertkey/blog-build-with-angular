@@ -7,10 +7,37 @@ import {NzMessageService} from 'ng-zorro-antd';
   providedIn: 'root'
 })
 export class UserService {
-  changePasswordUrl = ROOT_URL + 'api/user/change';
-  isUserExistUrl = ROOT_URL + 'api/user/exist';
+  redirectUrl: string;
+
+  private loginUrl = ROOT_URL + 'api/user/login';
+  private changePasswordUrl = ROOT_URL + 'api/user/change';
+  private isUserExistUrl = ROOT_URL + 'api/user/exist';
 
   constructor(private http: HttpClient, private msg: NzMessageService) {
+  }
+
+  getIsLoggedIn(): boolean {
+    const result = sessionStorage.getItem('isLoggedIn');
+    if (result === 'true') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  setIsLoggedIn(val: boolean):void {
+    sessionStorage.setItem('isLoggedIn', val.toString());
+  }
+
+  login(data) {
+    return this.http.post(this.loginUrl, {
+      'userName': data['userName'],
+      'password': data['password']
+    });
+  }
+
+  logout(): void {
+    this.setIsLoggedIn(false);
   }
 
   changePassword(data) {

@@ -4,24 +4,24 @@ import {
   FormGroup, ValidationErrors,
   Validators
 } from '@angular/forms';
-import {LoginService} from '../login.service';
 import {Router} from '@angular/router';
 import {Observable, Observer} from 'rxjs';
 import {Response} from '../../app.config';
+import {UserService} from '../../manage/user.service';
+import {NzMessageService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [LoginService]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   isLogging = false;
 
-  constructor(private router: Router, private fb: FormBuilder, private loginService: LoginService, private ref: ChangeDetectorRef) {
+  constructor(private router: Router, private userService: UserService, private fb: FormBuilder, private ref: ChangeDetectorRef, private msg: NzMessageService) {
   }
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class LoginFormComponent implements OnInit {
   submitForm(): void {
     this.isLogging = true;
     this.ref.detectChanges(); // 手动检测变更
-    this.loginService.login(this.loginForm.value)
+    this.userService.login(this.loginForm.value)
       .subscribe(
         (res: Response) => {
           this.isLogging = false;
@@ -46,8 +46,10 @@ export class LoginFormComponent implements OnInit {
             } else {
               localStorage.removeItem('userName'); // 未勾选账号，登录成功后清除LocalStorage
             }
+            this.userService.setIsLoggedIn(true);
             this.router.navigate(['/manage']);
           } else {
+            this.msg.error(res.errMsg);
             this.isLogging = false;
             this.ref.detectChanges(); // 手动检测变更
           }
