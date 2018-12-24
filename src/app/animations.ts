@@ -1,4 +1,4 @@
-import {trigger, transition, style, query, animate, group, animateChild, state} from '@angular/animations';
+import {trigger, transition, style, query, animate, group, animateChild, state, stagger} from '@angular/animations';
 
 export const slideInAnimation =
   trigger('routeAnimations', [
@@ -61,5 +61,18 @@ export const flyInOutAnimation = trigger('flyInOut', [
   ]),
   transition('* => void', [
     animate(200, style({transform: 'translateY(20px)', opacity: 0}))
+  ])
+]);
+
+// 列表元素飞入动画。从元素上方50px，透明度由0变为1.
+
+export const listFlyInAnimation = trigger('listFlyIn', [
+  transition(':enter', [
+    query('li', [
+      style({opacity: 0, transform: 'translateY(-50px)'}),
+      stagger(100, [
+        animate('500ms ease-out', style({opacity: 1, transform: 'none'}))
+      ])
+    ])
   ])
 ]);

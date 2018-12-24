@@ -1,8 +1,8 @@
 <div class="category-list-card-container">
   <mat-card class="category-list-card">
     <h2 style="font-size: 32px;font-weight: 300;text-align: center;margin-bottom: 30px;margin-top: 10px">分类</h2>
-    <ul style="padding: 0 50px;list-style: none" >
-      <li *ngFor="let category of categoryList" class="category-list" [@flyInOut]>{{category.categoryName}} ({{category.files.length}})</li>
+    <ul style="padding: 0 50px;list-style: none" [@listFlyIn]  *ngIf="isDateReady">
+      <li *ngFor="let category of categoryList" class="category-list">{{category.categoryName}} ({{category.files.length}})</li>
     </ul>
   </mat-card>
 </div>

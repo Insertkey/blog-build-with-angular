@@ -1,7 +1,11 @@
 <div class="card-container">
   <mat-card class="introduction-card">Simple card</mat-card>
   <mat-card class="article-list-card">
-    <app-article-card *ngFor="let article of articleList" [article]="article"></app-article-card>
+    <ul *ngIf="isDateReady" [@articleCardFlyIn] style="list-style: none">
+      <li *ngFor="let article of articleList">
+        <app-article-card [article]="article"></app-article-card>
+      </li>
+    </ul>
     <div class="pagination-container">
       <nz-pagination [nzPageIndex]="currentPageIndex" [nzPageSize]="pageSize"
                      [nzTotal]="totalAmount" [nzShowQuickJumper]="true"
