@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-page-not-found',
@@ -8,9 +9,11 @@ import { Router } from '@angular/router';
 })
 export class PageNotFoundComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private titleService: Title) {
+  }
 
   ngOnInit() {
+    this.titleService.setTitle('404-该页面不存在');
   }
 
   goToFrontEnd() {

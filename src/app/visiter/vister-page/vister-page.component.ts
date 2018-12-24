@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-vister-page',
@@ -6,12 +7,11 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./vister-page.component.css']
 })
 export class VisterPageComponent implements OnInit {
-  markdownFilePath = '';
-
-  constructor() {
+  constructor(private titleService: Title) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('造钥匙的人');
   }
 
 }

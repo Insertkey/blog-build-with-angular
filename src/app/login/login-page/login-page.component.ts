@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login-page',
@@ -8,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class LoginPageComponent implements OnInit {
   isLogin = true;
 
-  constructor() { }
+  constructor(private titleService: Title) {
+  }
 
   ngOnInit() {
+    this.titleService.setTitle('登录');
   }
+
   toggleStatus(): void {
     this.isLogin = !this.isLogin;
   }
