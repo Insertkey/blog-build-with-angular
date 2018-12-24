@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ManageService} from '../../manage/manage.service';
-import {Response} from '../../app.config';
+import {ArticleList, Response} from '../../app.config';
 import {listFlyInAnimation} from '../../animations';
 
 @Component({
@@ -11,7 +11,11 @@ import {listFlyInAnimation} from '../../animations';
 })
 export class CategoryComponent implements OnInit {
   categoryList: any[];
-  isDateReady = false;
+  articleList: ArticleList[];
+  isCategoryState = true;
+  currentCategory = '';
+  isCategoryDataReady = false;
+  isArticleDataReady = false;
 
   constructor(private manageService: ManageService) {
   }
@@ -20,13 +24,27 @@ export class CategoryComponent implements OnInit {
     this.getCategoryList();
   }
 
+  handleCategoryListClick(id, category) {
+    this.isCategoryState = false;
+    this.currentCategory = category;
+    this.manageService.getArticleListWithCategory(id).subscribe((res: Response) => {
+      this.articleList = [...res.data];
+    }, (error) => {
+      console.error(error);
+    }, () => {
+      this.isArticleDataReady = true;
+    });
+  }
+
   getCategoryList() {
     this.manageService.getAllCategoryList().subscribe((res: Response) => {
       this.categoryList = [...res.data];
     }, (error) => {
       console.error(error);
     }, () => {
-      this.isDateReady = true;
+      this.isCategoryDataReady = true;
     });
   }
+
+
 }

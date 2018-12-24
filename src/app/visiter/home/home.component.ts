@@ -11,7 +11,7 @@ import {animate, query, stagger, style, transition, trigger} from '@angular/anim
     transition(':enter', [
       query('li', [
         style({opacity: 0, transform: 'translateY(-100px)'}),
-        stagger(100, [
+        stagger(120, [
           animate('500ms cubic-bezier(0.35, 0, 0.25, 1)', style({opacity: 1, transform: 'none'}))
         ])
       ])
@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
 
   // 按照最近修改时间排序
   getArticleList() {
+    this.isDateReady = false;
     this.manageService.getArticleList(this.currentPageIndex, this.pageSize, 'lastEditTime', 'descend').subscribe((res: Response) => {
         this.articleList = [...res.data];
         this.totalAmount = res.option.total;

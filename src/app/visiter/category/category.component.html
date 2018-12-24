@@ -1,8 +1,29 @@
 <div class="category-list-card-container">
   <mat-card class="category-list-card">
-    <h2 style="font-size: 32px;font-weight: 300;text-align: center;margin-bottom: 30px;margin-top: 10px">分类</h2>
-    <ul style="padding: 0 50px;list-style: none" [@listFlyIn]  *ngIf="isDateReady">
-      <li *ngFor="let category of categoryList" class="category-list">{{category.categoryName}} ({{category.files.length}})</li>
-    </ul>
+    <div *ngIf="isCategoryState">
+      <h2 style="font-size: 32px;font-weight: 300;text-align: center;margin-bottom: 30px;margin-top: 10px">分类</h2>
+      <ul style="list-style: none;padding: 0" [@listFlyIn] *ngIf="isCategoryDataReady"
+          (click)="handleCategoryListClick($event.target.getAttribute('data-id'),$event.target.getAttribute('data-category'))">
+        <li *ngFor="let category of categoryList" class="category-list" [attr.data-id]="category.id"
+            [attr.data-category]="category.categoryName">
+          {{category.categoryName}} ({{category.files.length}})
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="!isCategoryState">
+      <h2 style="font-size: 32px;font-weight: 300;text-align: center;margin-bottom: 30px;margin-top: 10px">
+        {{currentCategory}}</h2>
+      <ul style="list-style: none;padding: 0" [@listFlyIn] *ngIf="isArticleDataReady">
+        <li style="text-align: center;margin-bottom: 20px">
+          <button mat-raised-button color="primary" (click)="isCategoryState=true;isArticleDataReady=false">返回分类列表
+          </button>
+        </li>
+        <li class="article-list" *ngFor="let article of articleList"
+            [routerLink]="['/visiter/article',article.id,{'articleName':article.articleName}]">{{article.articleName}}
+        </li>
+        <li style="text-align: center;margin-top: 20px;font-size: 20px" *ngIf="articleList.length===0">当前分类没有文章
+        </li>
+      </ul>
+    </div>
   </mat-card>
 </div>

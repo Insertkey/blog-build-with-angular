@@ -1,8 +1,8 @@
-<div class="article-card">
+<div class="article-card" xmlns="http://www.w3.org/1999/html">
   <h2 style="text-align: center;font-size: 24px">{{article.articleName}}</h2>
-  <p style="text-align: center">
-    <span>修改于:{{article.lastEditTime|formatDate}}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;分类:</span>
-    <span style="cursor: pointer">{{article.category.categoryName}}</span>
+  <p style="display: flex;justify-content: center">
+    <span>修改于:{{article.lastEditTime|formatDate}}</span><span>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;</span><span>分类:</span>
+    <span style="cursor: pointer" [routerLink]="['/visiter/category']">{{article.category.categoryName}}</span>
   </p>
   <p style="min-height: 50px;text-indent: 2em">{{article.shortIntroduction?article.shortIntroduction:'暂无简介'}}</p>
   <div style="text-align: center">

@@ -14,6 +14,7 @@ export class ManageService {
   private deleteCategoryUrl = ROOT_URL + 'api/category/';
   private getArticleListUrl = ROOT_URL + 'api/file/list';
   private deleteArticleUrl = ROOT_URL + 'api/file/';
+  private getArticleListWithCategoryUrl = ROOT_URL + 'api/file/list/';
 
   constructor(private http: HttpClient) {
   }
@@ -55,5 +56,9 @@ export class ManageService {
 
   deleteArticle(id) {
     return this.http.delete(this.deleteArticleUrl + id);
+  }
+
+  getArticleListWithCategory(id) {
+    return this.http.get(this.getArticleListWithCategoryUrl + id);
   }
 }
