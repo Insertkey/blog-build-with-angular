@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ArticleList, Response} from '../../../../app.config';
 import {ManageService} from '../../../manage.service';
 import {NzMessageService, NzModalRef, NzModalService} from 'ng-zorro-antd';
+import {UpdateArticleFormComponent} from '../../../../share/update-article-form/update-article-form.component';
 
 @Component({
   selector: 'app-edit-article',
@@ -75,30 +76,31 @@ export class EditArticleComponent implements OnInit {
   }
 
   editArticle(id) {
-    // const modal = this.modal.create({
-    //   nzTitle: '修改文章',
-    //   nzContent: UploadArticleFormComponent,
-    //   nzFooter: [
-    //     {
-    //       label: '取消',
-    //       onClick: (componentInstance) => {
-    //         componentInstance.instance.close();
-    //       }
-    //     },
-    //     {
-    //       label: '确定',
-    //       type: 'primary',
-    //       autoLoading: true,
-    //       onClick: (componentInstance) => {
-    //         componentInstance.instance.close();
-    //       }
-    //     }
-    //   ]
-    // });
-    //
-    // modal.afterClose.subscribe(() => {
-    //   this.getArticleList(this.currentPageIndex, this.pageSize);
-    // });
+    const modal = this.modal.create({
+      nzTitle: '修改文章',
+      nzContent: UpdateArticleFormComponent,
+      nzComponentParams: {articleId: id},
+      nzFooter: [
+        {
+          label: '取消',
+          onClick: (componentInstance) => {
+            componentInstance.modalRef.close();
+          }
+        },
+        {
+          label: '确定',
+          type: 'primary',
+          autoLoading: true,
+          onClick: (componentInstance) => {
+            componentInstance.modalRef.close();
+          }
+        }
+      ]
+    });
+
+    modal.afterClose.subscribe(() => {
+      this.getArticleList();
+    });
   }
 }
 

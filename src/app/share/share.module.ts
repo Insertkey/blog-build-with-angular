@@ -8,6 +8,8 @@ import {ArticleCardComponent} from './article-card/article-card.component';
 import {FormatDatePipe} from './pipe/format-date.pipe';
 import {RouterModule} from '@angular/router';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
+import { UpdateArticleFormComponent } from './update-article-form/update-article-form.component';
+import {FormsModule} from '@angular/forms';
 
 export function markedOptions(): MarkedOptions {
   const renderer = new MarkedRenderer();
@@ -29,7 +31,7 @@ export function markedOptions(): MarkedOptions {
 }
 
 @NgModule({
-  declarations: [ArticleDetailComponent, ArticleCardComponent, FormatDatePipe],
+  declarations: [ArticleDetailComponent, ArticleCardComponent, FormatDatePipe, UpdateArticleFormComponent],
   imports: [
     CommonModule,
     MatButtonModule,
@@ -41,13 +43,15 @@ export function markedOptions(): MarkedOptions {
         useFactory: markedOptions,
       }
     }),
+    FormsModule,
     NgZorroAntdModule,
     RouterModule
   ],
   exports: [
     FormatDatePipe,
     ArticleDetailComponent,
-    ArticleCardComponent
+    ArticleCardComponent,
+    UpdateArticleFormComponent
   ]
 })
 export class ShareModule {

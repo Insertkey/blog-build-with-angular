@@ -16,6 +16,7 @@ import {ArticleTagComponent} from './content/blog-setting/article-tag/article-ta
 import {EditArticleComponent} from './content/blog-setting/edit-article/edit-article.component';
 import {ArticleCategoryComponent} from './content/blog-setting/article-category/article-category.component';
 import {ShareModule} from '../share/share.module';
+import {UpdateArticleFormComponent} from '../share/update-article-form/update-article-form.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import {ShareModule} from '../share/share.module';
     ReactiveFormsModule,
     ManageRoutingModule
   ],
-  entryComponents: []
+  entryComponents: [UpdateArticleFormComponent]
 })
 export class ManageModule {
 }

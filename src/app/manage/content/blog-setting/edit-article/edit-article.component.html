@@ -1,6 +1,6 @@
 <nz-table [nzBordered]="true" [nzFrontPagination]="false" [(nzPageIndex)]="currentPageIndex" [(nzPageSize)]="pageSize"
           [nzData]="articleList" #articleTable  [nzTotal]="total" [nzLoading]="loading"
-          nzShowSizeChanger (nzPageIndexChange)="pageIndexChange()" (nzPageSizeChange)="PageSizeChange($event)"
+          nzShowSizeChanger (nzPageIndexChange)="pageIndexChange($event)" (nzPageSizeChange)="PageSizeChange($event)"
           [nzShowQuickJumper]="true">
   <thead nzSingleSort (nzSortChange)="sort($event)" [nzSingleSort]="true">
   <tr>
